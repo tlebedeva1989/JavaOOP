@@ -1,42 +1,38 @@
+package animals;
 
-
-public class Animal {
+public abstract class Animal {
     private String name;
     private int PawsCount;
     private String color;
 
-    public String getType(){
+    private static int animalsCount = 0;
+
+    public String getType() {
         return this.getClass().getSimpleName();
     }
-    public Animal(String name, String color, int PawsCount){
+
+    public Animal(String name, String color, int PawsCount) {
         this.color = color;
         this.name = name;
         this.PawsCount = PawsCount;
+        animalsCount++;
     }
 
-    public Animal(String name,String color){this(name,color,0);}
-
-
-
-    public Animal(String name){
-        this(name,null,0);
+    public Animal(String name, String color) {
+        this(name, color, 0);
     }
 
-    public void speak(){
-        System.out.println("Yarr");
+
+    public Animal(String name) {
+        this(name, null, 0);
     }
 
-    public void toFly(){
-        System.out.println("I'm flying");
+    public Animal() {
+        this(null);
     }
 
-    public void toSwim(){
-        System.out.println("Swimming bul bul");
-    }
+    public abstract void speak();
 
-    public void toGo(){
-        System.out.println("I'm going top top");
-    }
     public String getName() {
         return name;
     }
@@ -61,8 +57,15 @@ public class Animal {
         this.color = color;
     }
 
+    public abstract void hunt();
+
+
     @Override
     public String toString() {
-        return String.format("Name: %s, Color %s", this.name, this.color );
+        return String.format("Name: %s, Color %s", this.name, this.color);
+    }
+
+    public static int getAnimalsCount(){
+        return animalsCount;
     }
 }
